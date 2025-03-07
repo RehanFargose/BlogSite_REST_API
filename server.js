@@ -1,15 +1,20 @@
 import express from "express";
 import bodyParser from "body-parser";
 import axios from "axios";
+import cors from "cors";
+
 
 const app = express();
 const port = 3000;
-const API_URL = "http://localhost:4000";
+// const API_URL = "http://localhost:4000";
+const API_URL = "http://api:4000";
+
 
 app.use(express.static("public"));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(cors());
 
 
 // Route to render the main page

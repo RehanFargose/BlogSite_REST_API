@@ -1,0 +1,51 @@
+
+services:
+  app:
+    build: .
+    container_name: blogsite_app
+    ports:
+      - "3000:3000"  # Main app
+    depends_on:
+      - api
+      - db
+    environment:
+      # - API_SERVER_URL=http://api:4000
+      - API_URL=http://api:4000
+    volumes:
+      - .:/app
+      - /app/node_modules
+    command: ["npx","nodemon", "server.js"]  # Use nodemon for live reload
+
+  api:
+    build: .
+    container_name: blogsite_api
+    ports:
+      - "4000:4000"  # API server
+    depends_on:
+      - db
+    environment:
+      - DB_HOST=db
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - DB_NAME=blogdb
+      - DB_PORT=5432
+    volumes:
+      - .:/app
+      - /app/node_modules
+    command: ["npx","nodemon", "index.js"]  # Use nodemon for API server
+
+  db:
+    image: postgres:15
+    container_name: blogsite_db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: blogdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
