@@ -18,7 +18,7 @@ const pg_port = process.env.port;
 // Create a Postgresql client
 const db = new pg.Client({
   user: pg_user,
-  host: pg_host,
+  host: "localhost",
   database: pg_db,
   password: pg_password,
   port: pg_port,
