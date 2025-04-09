@@ -18,7 +18,7 @@ RUN npm install
 COPY . .
 
 # Expose the necessary ports for API server and Main Server
-EXPOSE 3000 4000
+EXPOSE 3000 4000 5000
 
 # Default command (overridden in docker-compose.yml)
 CMD ["npx","nodemon", "server.js"]

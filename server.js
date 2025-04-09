@@ -6,9 +6,10 @@ import cors from "cors";
 
 const app = express();
 const port = 3000;
-// const API_URL = "http://localhost:4000";
-const API_URL = "http://api:4000";
 
+// const API_URL = "http://localhost:4000";
+// const API_URL = "http://api:4000";
+const API_URL = "http://blogsite-api:4000";
 
 app.use(express.static("public"));
 

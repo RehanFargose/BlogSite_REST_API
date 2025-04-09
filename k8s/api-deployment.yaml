@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: blogsite-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: blogsite-api
+  template:
+    metadata:
+      labels:
+        app: blogsite-api
+    spec:
+      containers:
+        - name: api
+          image: rehanfargose/bookapidbproject-api:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 4000
+
+          env:
+          - name: user
+            value: "postgres"
+          - name: host
+            value: "db"
+          - name: database
+            value: "blogdb"
+          - name: password
+            value: "postgres"
+          - name: port
+            value: "5432"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: blogsite-api
+spec:
+  selector:
+    app: blogsite-api
+  ports:
+    - port: 4000
+      targetPort: 4000
