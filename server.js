@@ -8,8 +8,9 @@ const app = express();
 const port = 3000;
 
 // const API_URL = "http://localhost:4000";
-// const API_URL = "http://api:4000";
-const API_URL = "http://blogsite-api:4000";
+// const API_URL = "http://blogsite_api:4000";
+
+const API_URL = "http://api:4000";   // To make docker work use this(rebuild just to be sure)
 
 app.use(express.static("public"));
 
